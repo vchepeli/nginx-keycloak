@@ -1,0 +1,9 @@
+# Global
+.*.swp
+.DS_Store
+
+# Intellij
+.idea/
+
+# SSL Certs
+etc/ssl/
