@@ -12,9 +12,9 @@ server {
 
 	location $BASE_PATH {
 	    proxy_set_header Accept-Encoding "";
-	    proxy_set_header Host $host;
+	    #proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
-		proxy_pass http://$KEYCLOAK_IP:8080;
+		proxy_pass https://$KEYCLOAK_IP/;
 	}
 }
 
@@ -34,8 +34,8 @@ server {
 
 	location $BASE_PATH {
 	    proxy_set_header Accept-Encoding "";
-	    proxy_set_header Host $host;
+	    #proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
-		proxy_pass https://$KEYCLOAK_IP:8443;
+		proxy_pass https://$KEYCLOAK_IP/;
 	}
 }

@@ -15,25 +15,25 @@ services:
       vpcbr:
         ipv4_address: ${POSTGRES_IP}
 
-  keycloak:
-    image: jboss/keycloak:${KEYCLOAK_VERSION:-latest}
-    container_name: ${KEYCLOAK_CONTAINER_NAME}
-    environment:
-      - PROXY_ADDRESS_FORWARDING=true
-      - KEYCLOAK_USER=${KEYCLOAK_USER}
-      - KEYCLOAK_PASSWORD=${KEYCLOAK_PASSWORD}
-      - DB_VENDOR=${KEYCLOAK_DB_VENDOR}
-      - DB_DATABASE=${POSTGRES_DB}
-      - DB_USER=${POSTGRES_USER}
-      - DB_PASSWORD=${POSTGRES_PASSWORD}
-      - DB_ADDR=${POSTGRES_HOST}
-    depends_on:
-      - postgresdb
-    links:
-      - postgresdb
-    networks:
-      vpcbr:
-        ipv4_address: ${KEYCLOAK_IP}
+  # keycloak:
+  #   image: jboss/keycloak:${KEYCLOAK_VERSION:-latest}
+  #   container_name: ${KEYCLOAK_CONTAINER_NAME}
+  #   environment:
+  #     - PROXY_ADDRESS_FORWARDING=true
+  #     - KEYCLOAK_USER=${KEYCLOAK_USER}
+  #     - KEYCLOAK_PASSWORD=${KEYCLOAK_PASSWORD}
+  #     - DB_VENDOR=${KEYCLOAK_DB_VENDOR}
+  #     - DB_DATABASE=${POSTGRES_DB}
+  #     - DB_USER=${POSTGRES_USER}
+  #     - DB_PASSWORD=${POSTGRES_PASSWORD}
+  #     - DB_ADDR=${POSTGRES_HOST}
+  #   depends_on:
+  #     - postgresdb
+  #   links:
+  #     - postgresdb
+  #   networks:
+  #     vpcbr:
+  #       ipv4_address: ${KEYCLOAK_IP}
 
   nginx:
     image: nginx:${NGINX_VERSION:-latest}
@@ -41,10 +41,10 @@ services:
     ports:
       - "80:80"
       - "443:443"
-    depends_on:
-      - keycloak
-    links:
-      - keycloak
+    # depends_on:
+    #   - keycloak
+    # links:
+    #   - keycloak
     volumes:
       - "./etc/ssl:/etc/ssl"
       - "./etc/nginx/default.conf.tmpl:/etc/nginx/conf.d/default.conf.tmpl"
