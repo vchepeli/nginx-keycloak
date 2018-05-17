@@ -45,13 +45,18 @@ You will also need to upgrade your Python packages on CentOS 7 to get docker-com
 
 `sudo yum upgrade python*`
 
-# Step 3 — Build Nginx/KeyCloak with Docker Compose
-
+# Step 3 - Checkout Github Repository
 1. `git clone git@github.com:vchepeli/nginx-keycloak.git`
 2. `cd nginx-keycloak`
-3. `docker-compose up -d`
 
-# Step 4 — Run Nginx/KeyCloak with Docker Compose
+# Step 4 — Start Nginx/KeyCloak/Postgres with Makefile
+Run following command to generate ssl certificates and start docker instances
+1. `make start`
 
+To stop docker instances use `make stop`. Or visit `make help` for more information
+NOTE: Now Nginx should listen on ports:[80, 443]
+
+# Step 5 — Login to KeyCloak via Nginx Proxy
 Open links in browser to see KeyCloak page with any browser
 - http://localhost (vchepeli:p@ssw0rd)
+- https://localhost (vchepeli:p@ssw0rd)
